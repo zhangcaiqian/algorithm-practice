@@ -8,12 +8,12 @@
 </head>
 <body>
     <h5>简单手写Vue</h5>
-    <input />
     <div id="app">
-        {{ message }}
+        <input v-model="message"/>
+        <div v-text="message"></div>
     </div>
 </body>
-<script src="Vue.js"></script>
+<script src="Vue_v2.js"></script>
 <script>
     const app = new Vue({
         el: '#app',
@@ -21,12 +21,12 @@
             message: 'Hello Vue'
         }
     })
-    const input = document.querySelector('input')
-    const el = document.querySelector('#app')
+    // const input = document.querySelector('input')
+    // const el = document.querySelector('#app')
 
-    // Input 改变data
-    input.oninput = function(e) {
-        app.data.message = e.target.value;
-    }
+    // // Input 改变data
+    // input.oninput = function(e) {
+    //     app.data.message = e.target.value;
+    // }
 </script>
 </html>
