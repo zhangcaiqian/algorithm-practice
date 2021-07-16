@@ -9,16 +9,21 @@
 <body>
     <h5>简单手写Vue</h5>
     <div id="app">
-        <input v-model="message"/>
-        <div v-text="message"></div>
+        <div class="box">
+            <input v-model="message"/>
+            <div v-text="message"></div>
+            <input v-model="content"/>
+            <div> {{ content }}</div>
+        </div>
     </div>
 </body>
-<script src="Vue_v2.js"></script>
+<script src="Vue_test.js"></script>
 <script>
     const app = new Vue({
         el: '#app',
         data: {
-            message: 'Hello Vue'
+            message: 'Hello Vue',
+            content: "This is a content"
         }
     })
     // const input = document.querySelector('input')

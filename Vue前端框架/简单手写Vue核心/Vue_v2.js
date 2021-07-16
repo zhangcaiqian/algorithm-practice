@@ -15,20 +15,20 @@ class Vue {
     _proxyData (data) {
         // 遍历data中的所有属性
         Object.keys(data).forEach(key => {
-        // 把data的属性注入到vue实例中
-        Object.defineProperty(this, key, {
-            enumerable: true,
-            configurable: true,
-            get () {
-                return data[key]
-            },
-            set (newValue) {
-                if (newValue === data[key]) {
-                    return
+            // 把data的属性注入到vue实例中
+            Object.defineProperty(this, key, {
+                enumerable: true,
+                configurable: true,
+                get () {
+                    return data[key]
+                },
+                set (newValue) {
+                    if (newValue === data[key]) {
+                        return
+                    }
+                    data[key] = newValue
                 }
-                data[key] = newValue
-            }
-        })
+            })
       })
     }
 }
@@ -42,6 +42,7 @@ class Observer {
         this.walk(data)
     }
     walk (data) {
+        console.log("after data:", data);
         // 1. 判断data是否是对象
         if (!data || typeof data !== 'object') {
             return
@@ -50,6 +51,7 @@ class Observer {
         Object.keys(data).forEach(key => {
             this.defineReactive(data, key, data[key])
         })
+        console.log("after data:", data);
     }
     defineReactive (obj, key, val) {
         let that = this
@@ -70,6 +72,7 @@ class Observer {
                     return
                 }
                 val = newValue
+                console.log("newValue:", newValue);
                 that.walk(newValue)
                 // 发送通知
                 dep.notify()
@@ -81,9 +84,7 @@ class Observer {
 /* Compiler: 编译模版，初始化视图，创建Watcher。
 通过el属性获取根节点，根据childNodes获取下面的子节点，遍历判断子节点类型，做相应的处理，
 因为Compiler要初始化试图，所以它的构造函数需要接受vue实例、el属性获取根节点，
-根据childNodes获取下面的子节点，遍历判断子节点类型，做相应的处理，因为Compiler要初始化试图，
-所以它的构造函数需要接受vue实例、el属性获取根节点，根据childNodes获取下面的子节点，遍历判断子节点类型，做相应的处理，
-因为Compiler要初始化视图，所以它的构造函数需要接受vue实例、el获取子节点
+根据childNodes获取下面的子节点，遍历判断子节点类型，做相应的处理
 */
 class Compiler {
     constructor (vm) {
@@ -124,7 +125,7 @@ class Compiler {
             }
         })
     }
-  
+    // 处理指令
     update (node, key, attrName) {
         if (attrName.startsWith('on')) {
             const eventName = attrName.substr(3)
@@ -234,7 +235,7 @@ class Watcher {
     update () {
         let newValue = this.vm[this.key]
         if (this.oldValue === newValue) {
-                return
+            return
         }
         this.cb(newValue)
     }
