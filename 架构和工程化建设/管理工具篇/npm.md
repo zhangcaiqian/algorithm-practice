@@ -8,4 +8,6 @@
 
 ![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/%E9%A1%B9%E7%9B%AE%E8%B5%84%E6%BA%90/npm安装依赖.png)
 
-** 注意：npm 在package.json 和 package-lock.json版本不一致时的处理和版本有关系，因此同一项目团队npm版本最好一致
+
+** 注意：npm 在package.json 和 package-lock.json版本不一致时的处理和版本有关系，因此同一项目团队npm版本最好一致 ** 
+
