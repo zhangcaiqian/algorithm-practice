@@ -1,5 +1,6 @@
 > 用什么样的思路可以 new 关键词？apply、call、bind 这三个方法之间有什么区别?怎样实现一个 apply 或者 call 的方法？
 ### new原理
+ JavaScript 当中的 new 关键字，有一段很有趣的历史。其实 JavaScript 创造者 Brendan Eich 实现 new 是为了获得更高的流行度，它是强行学习 Java 的一个残留产出，创造者想让 JavaScript 成为 Java 的小弟。当然，也有很多人认为这个设计掩盖了 JavaScript 中真正的原型继承，只是表面上看，更像是基于类的继承。
 #### 执行实例函数，返回一个实例对象
 ```
 let name = "Jack";
