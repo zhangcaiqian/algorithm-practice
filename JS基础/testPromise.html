@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="myPromise.js"></script>
+    <h3>手写promise</h3>
+    <p>
+    </p>
+    <script>
+        // console.log("promise 结果=============================");
+        // let m1 = new myPromise((resolve, reject)=>{
+        //     console.log("excutor");
+        //     setTimeout(function(){
+        //         resolve("xigua");
+        //     }, 300);
+        // });
+        // m1.then((data) => {
+        //     console.log("then data : ", data);
+        //     setTimeout(function(){
+        //         console.log("settimeout then: " + data);
+        //     }, 300);
+        //     return data;
+        // }).then(data => {
+        //     console.log("second settimeout then2: " + data);
+        // });
+        // console.log("myPromise 结果 =============================");
+        // let m = new myPromise((resolve, reject)=>{
+        //     console.log("fn");
+        //     setTimeout(function(){
+        //         // resolve("xigua");
+        //     }, 300);
+        //     resolve("xigua");
+        // });
+        // m.then((data) => {
+        //     console.log("then1 data : ", data);
+        //     setTimeout(function(){
+        //         console.log("then1 settimeout data: " + data);
+        //     }, 300);
+        //     return data;
+        // }).then((data) => {
+        //     console.log("then2 data: " + data);
+        // });
+        console.log("myPromise 结果 =============================");
+        new myPromise((resolve, reject) => {
+            console.log("log: 外部promise");
+            resolve();
+        })
+        .then(() => {
+            console.log("log: 外部第一个then");
+            new myPromise((resolve, reject) => {
+                console.log("log: 内部promise");
+                // resolve();
+            })
+            .then(() => {
+                console.log("log: 内部第一个then");
+            })
+            .then(() => {
+                console.log("log: 内部第二个then");
+            });
+        })
+        .then(() => {
+            console.log("log: 外部第二个then");
+        });
+        // log: 外部promise
+        // log: 外部第一个then
+        // log: 内部promise
+        // log: 内部第一个then
+        // log: 外部第二个then
+        // log: 内部第二个then
+
+        // 如果前面的 promise 已经是 resolved 状态，则会立即将回调推入微任务队列（但是执行回调还是要等到所有同步任务都结束后）
+        // 如果前面的 promise 是 pending 状态则会将回调存储在 promise 的内部，一直等到 promise 被 resolve 才将回调推入微任务队列  
+        // 如果执行过程中产生新的微任务也会推进微任务队列
+        
+        // 详细：
+        // log: 外部promise
+        // log: 外部第一个then
+        // log: 内部promise
+        // status 是resolved 新增 promise () => { console.log("log: 外部第一个then"); new myPromise ...
+        // 原因：微任务队列在下一tick才会执行，因此先生成外部第一个then 和外部第二个then，
+        // 再在下一个tick 执行内部函数，内部promise 和 内部第一个then
+        // 并将内部第二个then也加入回调
+
+
+    </script>
+</body>
+</html>
