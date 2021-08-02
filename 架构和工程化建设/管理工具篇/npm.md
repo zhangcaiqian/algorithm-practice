@@ -1,29 +1,29 @@
 开篇问题列表：
-* 我们的应用依赖了公共库 A 和公共库 B，同时公共库 A 也依赖了公共库 B，那么公共库 B 会被多次安装或重复打包吗？
+> 我们的应用依赖了公共库 A 和公共库 B，同时公共库 A 也依赖了公共库 B，那么公共库 B 会被多次安装或重复打包吗？
 
 ### npm 安装机制和内部思想
 
-优先安装依赖包到当前项目目录，使得不同应用项目的依赖各成体系，减轻兼容压力。
+npm 是一个管理开源库的工具。
 
+优先安装依赖包到当前项目目录，使得不同应用项目的依赖各成体系，减轻兼容压力。
 如果我们的项目 A 和项目 B，都依赖了相同的公共库 C，那么公共库 C 一般都会在项目 A 和项目 B 中，各被安装一次。这就说明，同一个依赖包可能在我们的电脑上进行多次安装。
 
 ![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/npm%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96.png)
 
+执行顺序：
+
 1. npm install 执行之后，首先，检查并获取 npm 配置，这里的优先级为：项目级的 .npmrc 文件 > 用户级的 .npmrc 文件> 全局级的 .npmrc 文件 > npm 内置的 .npmrc 文件。
 2. 然后检查项目中是否有 package-lock.json 文件。如果有，则检查 package-lock.json 和 package.json 中声明的依赖是否一致：
 
-    一致，直接使用 package-lock.json 中的信息，从缓存或网络资源中加载依赖；
-
-    不一致，按照 npm 版本进行处理（不同 npm 版本处理会有不同，具体处理方式如图所示）。
+    + 一致，直接使用 package-lock.json 中的信息，从缓存或网络资源中加载依赖；
+    + 不一致，按照 npm 版本进行处理（不同 npm 版本处理会有不同，具体处理方式如图所示）。
 
 如果没有，则根据 package.json 递归构建依赖树。然后按照构建好的依赖树下载完整的依赖资源，在下载时就会检查是否存在相关资源缓存：
 
 存在，则将缓存内容解压到 node_modules 中；
 
 否则就先从 npm 远程仓库下载包，校验包的完整性，并添加到缓存，同时解压到 node_modules。
-
 最后生成 package-lock.json。
-
 
 ** 注意：npm 在package.json 和 package-lock.json版本不一致时的处理和版本有关系，因此同一项目团队npm版本最好一致 ** 
 
@@ -49,4 +49,4 @@ npm config set init-module ~\.npm-init.js
 ### npm link 将模块链接到项目使用
 example: https://www.jianshu.com/p/aaa7db89a5b2
 ### npx 的作用
-执行模块内文件
+执行模块内文件，npx 可以自动去 node_modules/.bin 路径和环境变量 $PATH 里面检查命令是否存在，而不需要再在 package.json 中定义相关的 script。

@@ -54,7 +54,7 @@
             console.log("log: 外部第一个then");
             new myPromise((resolve, reject) => {
                 console.log("log: 内部promise");
-                // resolve();
+                resolve();
             })
             .then(() => {
                 console.log("log: 内部第一个then");

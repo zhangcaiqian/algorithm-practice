@@ -42,7 +42,7 @@ class Observer {
         this.walk(data)
     }
     walk (data) {
-        console.log("after data:", data);
+
         // 1. 判断data是否是对象
         if (!data || typeof data !== 'object') {
             return

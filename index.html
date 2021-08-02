@@ -7,7 +7,23 @@
 
   <body>
     <div id="app"></div>
-
+    <div id="out" style="width: 400px;height: 400px;background-color: aquamarine;" >out 
+      <div id="inner"  style="width: 200px;height: 200px;background-color: burlywood;">inner</div>
+    </div>
+      <script>
+          // s1.addEventListener("click",function(e){
+          //     console.log("out 冒泡事件");
+          // },false);
+          // s2.addEventListener("click",function(e){
+          //     console.log("inner 冒泡事件");
+          // },false);
+          out.addEventListener("click",function(e){
+              console.log("out 冒泡事件");
+          }, true);
+          inner.addEventListener("click",function(e){
+              console.log("inner 冒泡事件");
+          }, true);
+    </script>
     <script src="ast.js"></script>
   </body>
 </html>

@@ -23,7 +23,6 @@ new Promise(resolve => {
   // log: 内部第二个then
 
 ```
-![测试](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/promise.png)
 1. 首先 Promise 实例化时，同步执行函数，打印 log: 外部promise，
 然后执行 resolve 函数，将 promise 变为 resolved，但由于此时 then 方法还未执行，所以遍历所有 then 方法注册的回调时什么也不会发生（结论2第一条）
 > 主线程： 外部第一个then，外部第二个then
@@ -50,3 +49,4 @@ new Promise(resolve => {
 
 > 主线程：空
 微任务：内1then回调，内2then回调
+

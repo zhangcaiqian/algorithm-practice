@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <div id="out" style="width: 400px;height: 400px;background-color: aquamarine;" >out 
+      <div id="inner"  style="width: 200px;height: 200px;background-color: burlywood;">inner</div>
+    </div>
+      <h5>TODO:点击每个 li 标签时，输出li当中的颜色（innerHTML） </h5>
+      <ul id="color_list">        
+        <li style="background-color: red;">red</li>        
+        <li style="background-color: orange;">orange</li>        
+        <li style="background-color: yellow;">yellow</li>        
+        <li style="background-color: green;">green</li>        
+        <li style="background-color: blue;">blue</li>        
+        <li style="background-color: purple;">purple</li>    
+    </ul>
+    <div id="box"></div>
+      <script>
+          // s1.addEventListener("click",function(e){
+          //     console.log("out 冒泡事件");
+          // },false);
+          // s2.addEventListener("click",function(e){
+          //     console.log("inner 冒泡事件");
+          // },false);
+          // out.addEventListener("click",function(e){
+          //     console.log("out 冒泡事件");
+          // }, true);
+          // inner.addEventListener("click",function(e){
+          //     console.log("inner 冒泡事件");
+          // }, true);
+          function colorChange(e){                
+              var e = e || window.event; //兼容性的处理         
+              if (e.target.nodeName.toLowerCase()==="li") {                    
+                box.innerHTML = "该颜色为 "+e.target.innerHTML;                
+              }                            
+          }            
+          color_list.addEventListener("click", colorChange, false)
+    </script>
+    <style>
+      #color_list {            
+          display: flex;            
+          display: -webkit-flex; 
+          list-style: none;       
+      }        
+      .color_list li{            
+          width: 100px;            
+          height: 100px;            
+          list-style: none;            
+          text-align: center;            
+          line-height: 100px;        
+      }
+      #box{            
+          width: 600px;            
+          height: 150px;            
+          background-color: #cccccc;            
+          line-height: 150px;            
+          text-align: center;        
+      }
+
+    </style>
+  </body>
+</html>
