@@ -45,27 +45,27 @@
         // }).then((data) => {
         //     console.log("then2 data: " + data);
         // });
-        console.log("myPromise 结果 =============================");
-        new myPromise((resolve, reject) => {
-            console.log("log: 外部promise");
-            resolve();
-        })
-        .then(() => {
-            console.log("log: 外部第一个then");
-            new myPromise((resolve, reject) => {
-                console.log("log: 内部promise");
-                resolve();
-            })
-            .then(() => {
-                console.log("log: 内部第一个then");
-            })
-            .then(() => {
-                console.log("log: 内部第二个then");
-            });
-        })
-        .then(() => {
-            console.log("log: 外部第二个then");
-        });
+        // console.log("myPromise 结果 =============================");
+        // new myPromise((resolve, reject) => {
+        //     console.log("log: 外部promise");
+        //     resolve();
+        // })
+        // .then(() => {
+        //     console.log("log: 外部第一个then");
+        //     new myPromise((resolve, reject) => {
+        //         console.log("log: 内部promise");
+        //         resolve();
+        //     })
+        //     .then(() => {
+        //         console.log("log: 内部第一个then");
+        //     })
+        //     .then(() => {
+        //         console.log("log: 内部第二个then");
+        //     });
+        // })
+        // .then(() => {
+        //     console.log("log: 外部第二个then");
+        // });
         // log: 外部promise
         // log: 外部第一个then
         // log: 内部promise
@@ -86,6 +86,48 @@
         // 再在下一个tick 执行内部函数，内部promise 和 内部第一个then
         // 并将内部第二个then也加入回调
 
+        // console.log("手动实现promiseall 结果 =============================");
+        // Promise.all
+        function test (text = "666", time = 1000) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function() {
+                    resolve(text)
+                }, time)
+            })
+        }
+
+        let p1 = test("p1", 3000)
+        let p2 = test("p2", 1000)
+        let p3 = test("p3", 2000)
+        let pArr = [p1, p2, p3]
+
+        function promiseAll (promiseArr) {
+            if (!Array.isArray(promiseArr)) {
+                return "参数为数组"
+            }
+            return new Promise(function(resolve, reject) {
+                let resolveValues = []
+                let resolveCount = 0
+                for (let i = 0; i < promiseArr.length; i++) {
+                    Promise.resolve(promiseArr[i]).then(function(res) {
+                        console.log("res: ", res)
+                        resolveCount ++
+                        resolveValues[i] = res
+                        if (resolveCount == promiseArr.length)
+                            resolve(resolveValues)
+                    }, function(err) {
+                        reject(err)
+                    })
+                }
+            })
+        }
+
+
+        promiseAll(pArr).then((res) => {
+            console.log("promiseAllRes", res)
+        }, (err) => {
+            console.log("err", err)
+        })
 
     </script>
 </body>
