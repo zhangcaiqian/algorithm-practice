@@ -50,3 +50,6 @@ new Promise(resolve => {
 > 主线程：空
 微任务：内1then回调，内2then回调
 
+### Promis 实现Promise.all
+
+

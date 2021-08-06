@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function EventEmitter () {
+        this.__events__ = [];
+    }
+
+    EventEmitter.prototype.on = function (eventName, listener) {
+        if (!eventName || typeof listener != 'function')
+            throw new TypeError("Type Error")
+        
+        let listeners = this.__events__[eventName] = this.__events__[eventName] || [];
+        if (notExist(listeners, listener))
+        {
+            listeners.push({
+                eventName,
+                listener
+            })
+        }
+        
+    }
+
+    function notExist (listeners, listener) {
+        return listeners.every(e => e != listener);
+    }
+
+    EventEmitter.prototype.emit = function (eventName, args) {
+        let listeners = this.__events__[eventName] || [];
+        console.log(this.__events__);
+        listeners.map(e => {
+            e.listener.apply(this, [args])
+        })
+    } 
+
+    EventEmitter.prototype.off = function (eventName, listener) {
+        if (!eventName || typeof listener != 'function')
+            return
+        let listeners = this.__events__[eventName] || [];
+        let index;
+        for (let i = 0; i < listeners.length; i++) {
+            if (listener == listeners[i].listener) {
+                index = i;
+            }
+        }
+        index && listeners.splice(index, 1)
+    }
+
+    var emitter = new EventEmitter();
+    function hello (name){
+        console.log("hello", name);
+    }
+    function jump (name) {
+        console.log("jump", name)
+    }
+    emitter.on('jump', jump);
+    emitter.on('say', hello);
+    // emitter.emit('say','John');
+    // emitter.emit('say','Lily');
+    // emitter.emit('jump','Lucy');
+    emitter.off('say', hello)
+    emitter.emit('say','John');
+    emitter.emit('say','Lily');
+    emitter.emit('jump','Lucy');
+    // //会输出 hello John、hello Lily、hello Lucy，之后还要加也可以继续触发
+    // emitter.once('see',hello);
+    // emitter.emit('see','Tom');
+    //只会输出一次 hello Tom
+    </script>
+</body>
+</html>

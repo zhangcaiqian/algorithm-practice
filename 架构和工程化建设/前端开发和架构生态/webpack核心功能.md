@@ -5,7 +5,7 @@
 ### Loader
 > 将源文件经过转换后生成目标文件并交由下一流程处理 
 链式调用、无副作用
-> style-loader、css-loader、sass-loader
+> style-loader、css-loader、sass-loader、vue-loader、babel-loader
 
 ```
 module.exports = {
@@ -30,4 +30,13 @@ module.exports = {
 
 ### plugin
 > 在webpack 编译周期特定节点执行特定功能
+> 常见 plugin UglifyJsPlugin、html-webpack-plugin
+> HotModuleReplacementPlugin
+
+### 性能优化
+> speed-measure-webpack-plugin 
++ 优化Loader配置,缩小文件搜索范围
++ 合理使用DLLPlugin将更改频率较低的代码（三方库）移到单独的编译
++ 多进程:thread-loader
+
 

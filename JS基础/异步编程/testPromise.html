@@ -122,6 +122,20 @@
             })
         }
 
+        function promiseRace (promiseArr) {
+            if (!Array.isArray(promiseArr))
+                return "参数为数组"
+            return new Promise(function(resolve, reject) {
+                for (let i = 0; i < promiseArr[i].length; i++) {
+                    Promise.resolve(promiseArr[i]).then(function(res) {
+                        resolve(res)
+                    }, function(err) {
+                        reject(err)
+                    })
+                }
+            })
+        }
+
 
         promiseAll(pArr).then((res) => {
             console.log("promiseAllRes", res)

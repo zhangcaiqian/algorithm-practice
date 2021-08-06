@@ -102,6 +102,9 @@ options: {
 </template>
 ```
 ### sass、less 
+Sass和Less都属于CSS预处理器
++ 嵌套
++ 复用
 
 ### 移动端像素单位 px、百分比、vw、vh、rem 等
 + 一些需要了解的概念

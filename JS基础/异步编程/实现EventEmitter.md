@@ -5,6 +5,8 @@ Node.js的events 模块对外提供了一个 EventEmitter 对象，用于对 Nod
 
 EventEmitter 就是 Node.js 实现事件驱动的基础。在 EventEmitter 的基础上，Node.js 中几乎所有的模块都继承了这个类，以实现异步事件驱动架构。
 
+「观察者模式」相比与「发布-订阅」模式，发布-订阅模式在观察者模式的基础上，在目标和观察者之间增加了一个调度中心。
+
 ### 实现 EventEmitter
 定义__events来存储自定义事件和回调函数
 ```
