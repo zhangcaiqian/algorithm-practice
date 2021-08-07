@@ -13,16 +13,6 @@ Babel 是一个Javascript编辑器（compiler），
 * 可调式：提供sourceMap
 * 基于协定（Compact）：基于协定，实现灵活的配置方式
 
-可以用
-```
-./node_modules/.bin/babel src --out-dir lib
-```
-或
-```
-npx src --out-dir lib
-```
-来进行测试验证
-
 ### 配置
 在 babel.config.json 或 .babelrc.json 中
 * tagets
@@ -59,6 +49,10 @@ npx babel src --out-dir lib --presets=@babel/env
 
 ### 分层设计理念
 ![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/babel.png)
++ 底层提供基础编译能力
++ 基础层上构建了babel-presets这种浇水层
++ 最上层提供webpack-loader,babel-cli, 浏览器编译等应用层
+
 > babel-loader 就是 Babel 结合 Webpack，融入整个基建环节
 > @babel/eslint-parser源码的实现，保留了相同的模板，它通过自定的 parser，最终返回了 ESLint 所需要的 AST 内容
 

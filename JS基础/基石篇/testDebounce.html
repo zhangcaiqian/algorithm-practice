@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function debounce (fn, delay) {
+            var timer
+            return function () {
+                var _this = this
+                var args = arguments
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(() => {
+                    fn.apply(_this, args)
+                }, delay);
+            }
+        }
+        // test
+        function testDebounce(e, content) {
+            console.log(e, content);
+        }
+        var testDebounceFn = debounce(testDebounce, 1000); // 防抖函数
+        document.onmousemove = function (e) {
+            console.log("mouseover")
+            testDebounceFn(e, 'debounce'); // 给防抖函数传参
+        }
+    </script>
+</body>
+</html>

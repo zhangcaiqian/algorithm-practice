@@ -217,3 +217,11 @@ document.getElementById("myDIV").addEventListener("webkitTransitionEnd", myFunct
 // 标准语法
 document.getElementById("myDIV").addEventListener("transitionend", myFunction);
 ```
+
+### 文本截断
+```
+width: 150px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+```
