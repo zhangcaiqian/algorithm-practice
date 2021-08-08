@@ -88,60 +88,69 @@
 
         // console.log("手动实现promiseall 结果 =============================");
         // Promise.all
-        function test (text = "666", time = 1000) {
-            return new Promise(function (resolve, reject) {
-                setTimeout(function() {
-                    resolve(text)
-                }, time)
+        // function test (text = "666", time = 1000) {
+        //     return new Promise(function (resolve, reject) {
+        //         setTimeout(function() {
+        //             resolve(text)
+        //         }, time)
+        //     })
+        // }
+
+        // let p1 = test("p1", 3000)
+        // let p2 = test("p2", 1000)
+        // let p3 = test("p3", 2000)
+        // let pArr = [p1, p2, p3]
+
+        // function promiseAll (promiseArr) {
+        //     if (!Array.isArray(promiseArr)) {
+        //         return "参数为数组"
+        //     }
+        //     return new Promise(function(resolve, reject) {
+        //         let resolveValues = []
+        //         let resolveCount = 0
+        //         for (let i = 0; i < promiseArr.length; i++) {
+        //             Promise.resolve(promiseArr[i]).then(function(res) {
+        //                 console.log("res: ", res)
+        //                 resolveCount ++
+        //                 resolveValues[i] = res
+        //                 if (resolveCount == promiseArr.length)
+        //                     resolve(resolveValues)
+        //             }, function(err) {
+        //                 reject(err)
+        //             })
+        //         }
+        //     })
+        // }
+
+        // function promiseRace (promiseArr) {
+        //     if (!Array.isArray(promiseArr))
+        //         return "参数为数组"
+        //     return new Promise(function(resolve, reject) {
+        //         for (let i = 0; i < promiseArr[i].length; i++) {
+        //             Promise.resolve(promiseArr[i]).then(function(res) {
+        //                 resolve(res)
+        //             }, function(err) {
+        //                 reject(err)
+        //             })
+        //         }
+        //     })
+        // }
+
+
+        // promiseAll(pArr).then((res) => {
+        //     console.log("promiseAllRes", res)
+        // }, (err) => {
+        //     console.log("err", err)
+        // })
+        function delay (ms) {
+            return new Promise(function(resolve) {
+                setTimeout(() => {
+                    resolve()
+                }, ms);
             })
         }
 
-        let p1 = test("p1", 3000)
-        let p2 = test("p2", 1000)
-        let p3 = test("p3", 2000)
-        let pArr = [p1, p2, p3]
-
-        function promiseAll (promiseArr) {
-            if (!Array.isArray(promiseArr)) {
-                return "参数为数组"
-            }
-            return new Promise(function(resolve, reject) {
-                let resolveValues = []
-                let resolveCount = 0
-                for (let i = 0; i < promiseArr.length; i++) {
-                    Promise.resolve(promiseArr[i]).then(function(res) {
-                        console.log("res: ", res)
-                        resolveCount ++
-                        resolveValues[i] = res
-                        if (resolveCount == promiseArr.length)
-                            resolve(resolveValues)
-                    }, function(err) {
-                        reject(err)
-                    })
-                }
-            })
-        }
-
-        function promiseRace (promiseArr) {
-            if (!Array.isArray(promiseArr))
-                return "参数为数组"
-            return new Promise(function(resolve, reject) {
-                for (let i = 0; i < promiseArr[i].length; i++) {
-                    Promise.resolve(promiseArr[i]).then(function(res) {
-                        resolve(res)
-                    }, function(err) {
-                        reject(err)
-                    })
-                }
-            })
-        }
-
-
-        promiseAll(pArr).then((res) => {
-            console.log("promiseAllRes", res)
-        }, (err) => {
-            console.log("err", err)
-        })
+        delay(2000).then(() => console.log('print after ms'))
 
     </script>
 </body>

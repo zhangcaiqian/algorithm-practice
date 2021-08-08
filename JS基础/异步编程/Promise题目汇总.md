@@ -50,6 +50,42 @@ new Promise(resolve => {
 > 主线程：空
 微任务：内1then回调，内2then回调
 
-### Promis 实现Promise.all
+### Promise 实现Promise.all
+```
+function promiseAll (promiseArr) {
+    if (!Array.isArray(promiseArr)) {
+        return "参数为数组"
+    }
+    return new Promise(function(resolve, reject) {
+        let resolveValues = []
+        let resolveCount = 0
+        for (let i = 0; i < promiseArr.length; i++) {
+            Promise.resolve(promiseArr[i]).then(function(res) {
+                console.log("res: ", res)
+                resolveCount ++
+                resolveValues[i] = res
+                if (resolveCount == promiseArr.length)
+                    resolve(resolveValues)
+            }, function(err) {
+                reject(err)
+            })
+        }
+    })
+}
+```
+
+### setTimout promisify化
+将setTimeout封装成promise名为delay，调用形式如下
+delay(ms).then(() => console.log('print after ms'))
+```
+function delay (ms) {
+    return new Promise(function(resolve) {
+        setTimeout(() => {
+            resolve()
+        }, ms);
+    })
+delay(2000).then(() => console.log('print after ms'))
+```
+
 
 
