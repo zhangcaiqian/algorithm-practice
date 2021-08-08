@@ -8,28 +8,46 @@
 </head>
 <body>
     <script>
-        function debounce (fn, delay) {
-            var timer
-            return function () {
-                var _this = this
-                var args = arguments
-                if (timer) {
-                    clearTimeout(timer)
-                }
-                timer = setTimeout(() => {
-                    fn.apply(_this, args)
-                }, delay);
-            }
-        }
-        // test
-        function testDebounce(e, content) {
-            console.log(e, content);
-        }
-        var testDebounceFn = debounce(testDebounce, 1000); // 防抖函数
-        document.onmousemove = function (e) {
-            console.log("mouseover")
-            testDebounceFn(e, 'debounce'); // 给防抖函数传参
-        }
+        // function debounce (fn, delay) {
+        //     var timer
+        //     return function () {
+        //         var _this = this
+        //         var args = arguments
+        //         if (timer) {
+        //             clearTimeout(timer)
+        //         }
+        //         timer = setTimeout(() => {
+        //             fn.apply(_this, args)
+        //         }, delay);
+        //     }
+        // }
+        // // test
+        // function testDebounce(e, content) {
+        //     console.log(e, content);
+        // }
+        // var testDebounceFn = debounce(testDebounce, 1000); // 防抖函数
+        // document.onmousemove = function (e) {
+        //     console.log("mouseover")
+        //     testDebounceFn(e, 'debounce'); // 给防抖函数传参
+        // }
+        // function throttle (fn, delay) {
+        //     var previous = 0
+        //     var _this = this
+        //     var args = arguments
+        //     var now = new Date()
+        //     if (now - previous > delay) {
+        //         fn.apply(_this, args)
+        //         now = previous
+        //     }
+        // }
+        // // test
+        // function testThrottle(e, content) {
+        //     console.log(e, content);
+        // }
+        // var testThrottleFn = throttle(testThrottle, 1000); // 节流函数
+        // document.onmousemove = function (e) {
+        //     testThrottleFn(e, 'throttle'); // 给节流函数传参
+        // }
     </script>
 </body>
 </html>

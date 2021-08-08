@@ -61,23 +61,35 @@ typeof(null) // object bug
 
 + 隐式
     + 逻辑
+        + 如果其中一个操作值是 null 或者 undefined，那么另一个操作符必须为 null 或者 undefined，才会返回 true，否则都返回 false；
+        + 两个操作值如果为 string 和 number 类型，那么就会将字符串转换为 number
+        + 如果一个操作值是 boolean，那么转换成 number
+```
+    null == undefined // true
+    null == 0 // false
+    '' == null // false
+    '' == 0 // true
+    0 == false // true
+```
     + 运算
         + '+'如果其中一个是字符串，另一个是undefined、null、bool，调用toString拼接，如果其中一个是对象，调用对象的valueOf
         + 如果其中一个是number，另一个是undefined、null、bool调用转数字
         + 字符串和数字 转换为字符串
+```
+'1' + undefined // '1undefined'
+'1' + null      // '1null'
+'1' + true      // '1true'
+1 + undefined   // NAN
+1 + null        // 1
+1 + true        // 2
+```
     + 关系操作
         + 类型相同 无需转换
         + null == undefined
         + string 和 number转 number
         + 一个是bool，转成number
     + if/while
-```
-null == undefined // true
-null == 0 // false
-'' == null // false
-'' == 0 // true
-0 == false // true
-```
+
 ### 深拷贝和浅拷贝
 > 1. 拷贝一个多层嵌套的对象怎么实现 2.什么样的深拷贝代码才是合格的
 + 浅拷贝
