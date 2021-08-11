@@ -48,6 +48,16 @@
         // document.onmousemove = function (e) {
         //     testThrottleFn(e, 'throttle'); // 给节流函数传参
         // }
+        function Parent () {
+            this.name = 'parent'
+        }
+        function Child () {
+            this.name = 'child'
+            Parent.call(this)
+        }
+        Child.prototype = Object.create(Parent.prototype)
+        Child.prototype.constructor = Child
+        
     </script>
 </body>
 </html>

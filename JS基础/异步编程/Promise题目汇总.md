@@ -86,6 +86,10 @@ function delay (ms) {
     })
 delay(2000).then(() => console.log('print after ms'))
 ```
-
-
-
+### 串行promise
+function linePromise (promiseArr, i) {
+    if (!Array.isArray(promiseArr)) {
+        return "参数为数组"
+    }
+    return new 
+}

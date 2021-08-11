@@ -8,13 +8,16 @@
 </head>
 <body>
     <script>
-        Array.prototype._map = function(fn, thisValue) {
-            var res = [];
-            thisValue = thisValue||[];
-            this.reduce(function(pre, cur, index, arr) {
-                return res.push(fn.call(thisValue, cur, index, arr))
-            }, [])
-            return res
+        Array.prototype._map = function(callbackFn, thisArg) {
+            let _this = Object(this)
+            let _bindThis = thisArg
+            let length = _this.length
+            let result = []
+            for (let i = 0; i < length; i++) {
+                let mapRes = callbackFn.call(_bindThis, _this[i])
+                result[i] = mapRes
+            }
+            return result
         }
         var arr = [2,3,1,5]
         arr._map(function(item,index,arr){

@@ -72,7 +72,7 @@ BFC 可用于
 + align-self: 在align-items 的基础上调整交叉轴上子组件的布局
 
 ### css modules 
-CSS Modules 是一个流行的，用于模块化和组合 CSS 的系统。vue-loader 提供了与 CSS Modules 的一流集成
+CSS Modules 是一个流行的，用于模块化和组合 CSS 的系统。css-loader 提供了与 CSS Modules 的一流集成
 + 首先，CSS Modules 必须通过向 css-loader 传入 modules: true
 ```
 loader: 'css-loader',
@@ -224,4 +224,14 @@ width: 150px;
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
+```
+
+```
+width: 400px;
+text-overflow: ellipsis; 
+display: -webkit-box;
+overflow: hidden;
+-webkit-line-clamp: 4;
+-webkit-box-orient: vertical;
+text-align: justify;
 ```

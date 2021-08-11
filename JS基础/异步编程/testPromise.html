@@ -88,18 +88,18 @@
 
         // console.log("手动实现promiseall 结果 =============================");
         // Promise.all
-        // function test (text = "666", time = 1000) {
-        //     return new Promise(function (resolve, reject) {
-        //         setTimeout(function() {
-        //             resolve(text)
-        //         }, time)
-        //     })
-        // }
+        function test (text = "666", time = 1000) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function() {
+                    resolve(text)
+                }, time)
+            })
+        }
 
-        // let p1 = test("p1", 3000)
-        // let p2 = test("p2", 1000)
-        // let p3 = test("p3", 2000)
-        // let pArr = [p1, p2, p3]
+        let p1 = test("p1", 3000)
+        let p2 = test("p2", 1000)
+        let p3 = test("p3", 2000)
+        let pArr = [p1, p2, p3]
 
         // function promiseAll (promiseArr) {
         //     if (!Array.isArray(promiseArr)) {
@@ -142,15 +142,75 @@
         // }, (err) => {
         //     console.log("err", err)
         // })
-        function delay (ms) {
-            return new Promise(function(resolve) {
+        // function delay (ms) {
+        //     return new Promise(function(resolve) {
+        //         setTimeout(() => {
+        //             resolve()
+        //         }, ms);
+        //     })
+        // }
+
+        // delay(2000).then(() => console.log('print after ms'))
+
+        // function linePromise (promiseArr, i) {
+        //     if (!Array.isArray(promiseArr)) {
+        //         return "参数为数组"
+        //     }
+        //     let arr = promiseArr;
+        //     return new Promise(function(resolve, reject) {
+        //         if (i >= arr.length) {
+        //             resolve()
+        //             return
+        //         }
+        //         Promise.resolve(arr[i]).then(function(res) {
+        //             linePromise(arr, i + 1)
+        //         }, function(err) {
+        //             reject(err)
+        //         })
+        //     })
+        // }
+        // linePromise(pArr, 0)
+
+
+        function execute(tasks) {
+            return tasks.reduce(
+                (previousPromise, currentPromise) => previousPromise.then((resultList) => {
+                    return new Promise(resolve => {
+                        currentPromise().then(result => {
+                            resolve(resultList.concat(result))
+                        }).catch(() => {
+                            resolve(resultList.concat(null))
+                        })
+                    })
+                }),
+            Promise.resolve([])
+            )
+        }
+        const Task = (result, isSuccess = true) => {
+            return () => new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    resolve()
-                }, ms);
-            })
+                    if (isSuccess) {
+                        console.log(`success: ${result}`);
+                        resolve(result);
+                    } else {
+                        console.log(`error: ${result}`);
+                        reject(result);
+                    }
+                }, 1000);
+            });
         }
 
-        delay(2000).then(() => console.log('print after ms'))
+
+        execute([
+            Task('A'),
+            Task('B'),
+            Task('X', false),
+            Task('C'),
+        ]).then(resultList => {
+        // 这里期望打印 ["A", "B", null, "C"]
+        console.log(resultList)
+})
+
 
     </script>
 </body>
