@@ -2,6 +2,7 @@
 
 + 将页面的对象抽象成JS的形式，配合不同渲染工具，使得跨平台成为可能。
 + 可以在内存中进行比较，将多次对比结果一次性更新，减少渲染次数。
++ 调用 createElement，生成真实Dom
 
 一个例子：
 ```
@@ -61,3 +62,4 @@ function setProps(element, props) {
 
 // 手写Virtual Domdiff
 [Diff](https://segmentfault.com/a/1190000016186666)
+[Diff](https://segmentfault.com/a/1190000016129036)
