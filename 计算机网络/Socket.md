@@ -11,7 +11,7 @@
 + 只需要指定主机的 IP 地址 和 端口号
 + 区分数据发送到哪一个应用上
 
-![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/websocket.png)
+![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/websocket.jpeg)
 
 + socket在不同主机之间不同应用的虚拟数据通道
 + 端口用来区分不同的应用
@@ -69,7 +69,7 @@ Packet type id> [<data>]
 + 5 upgrade——在engine.io切换传输之前，它测试，如果服务器和客户端可以通过这个传输进行通信。如果此测试成功，客户端发送升级数据包，请求服务器刷新其在旧传输上的缓存并切换到新传输。
 + 6 noop——noop数据包。主要用于在接收到传入WebSocket连接时强制轮询周期。
 
-![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/socketview.png)
+![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/socketview.jpeg)
 
 具体执行步骤：
 + connect握手成功
