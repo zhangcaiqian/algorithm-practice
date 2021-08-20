@@ -1,4 +1,5 @@
  > Vue 开启了一个队列，当你在 nextick 方法中改变数据的时候，视图层不会立马更新，而是要在下次的时间循环队列中更新。
+ > Vue 在更新 DOM 时是异步执行的。当数据发生变化，Vue将开启一个异步更新队列，视图需要等队列中所有数据变化完成之后，再统一进行更新
 
  ### process.nextick 和 Vue.nextick 的区别
 + process.nextick: 每一次eventLoop执行之前，如果有多个process.nextick，则会影响下一次时间执行函数
