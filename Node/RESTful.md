@@ -1,1 +1,21 @@
-RESTful（Representational State Transfer）是一种架构的约束条件和规则。
+RESTful（Representational State Transfer）表现层状态转化，是一种架构的约束条件和规则。
+
++ 表现层内：URI：资源实体 Accept 和 Content-Type
++ 状态转化：HTTP 四种状态：GET、POST、PUT、DELETE
+
+总结
++ 每一个URI代表一种资源
++ 客户端和服务器之间，传递这种资源的某种表现层
++ 客户端通过四个HTTP动词，对服务端资源进行操作，实现“表现层状态转化”
+
+### MVC 
+|  | 逻辑 | 基础架构 | M层 | C层 | 
+| :------| :------| ------: | ------: | ------: |
+| 参数解析 | 是 | 否 |  否 |
+| 路由判断 | 是|  否 | 否 |
+| 路由转发 | 是| 否 | 否 |
+| 参数判断 | 是| 否 | 是 |
+| contents查询 | 否| 是 | 否 |
+| contents id提取 | 否| 否 | 是 |
+| userInfo整合 | 否| 否 | 是 |
+| 接口响应 | 是| 否 | 否 |
