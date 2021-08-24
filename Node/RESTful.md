@@ -19,3 +19,9 @@ RESTful（Representational State Transfer）表现层状态转化，是一种架
 | contents id提取 | 否| 否 | 是 |
 | userInfo整合 | 否| 否 | 是 |
 | 接口响应 | 是| 否 | 否 |
+
+### 关系型数据库和非关系型数据库
++ 关系模式就是二维表格模型。
+    + 主要代表：SQL Server，Oracle,Mysql,PostgreSQL。
++ 以键值来存储，且结构不稳定，每一个元组都可以有不一样的字段，这种就不会局限于固定的结构，可以减少一些时间和空间的开销
+    + MongoDB、Redis
