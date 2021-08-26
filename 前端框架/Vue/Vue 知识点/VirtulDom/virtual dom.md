@@ -69,3 +69,9 @@ function setProps(element, props) {
 // 手写Virtual Domdiff
 [Diff](https://segmentfault.com/a/1190000016186666)
 [Diff](https://segmentfault.com/a/1190000016129036)
+
+### Diff函数
++ 当节点类型相同时，去看一下属性是否相同 产生一个属性的补丁包 {type:'ATTRS', attrs: {class: 'list-group'}}
++ 新的dom节点不存在 {type: 'REMOVE', index: xxx}
++ 节点类型不相同 直接采用替换模式 {type: 'REPLACE', newNode: newNode}
++ 文本的变化：{type: 'TEXT', text: 1}

@@ -1,18 +1,22 @@
-> RPC就是要像调用本地函数一样调用远程函数
-> 数据传输效率，安全性，可维护性
-二进制传输，无数据格式解析，函数对函数请求，不需要考虑权限，封闭通道
-### 本地过程调用
-本地调用例子：
-```
-int Multiply(int l, int r) {
-   int y = l * r;
-   return y;
-}
+> RPC(Remote Procedure Call) 像调用本地函数一样调用远程函数
++ 数据传输效率高
+   + 二进制，无数据结构解析，封闭通道
++ 安全性
+   + 函数对函数请求
 
-int lvalue = 10;
-int rvalue = 20;
-int l_times_r = Multiply(lvalue, rvalue);
-```
+![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/RPC.png)
+
+1. 调用方（Client）通过本地RPC代理（Proxy）调用相应的接口
+2. 本地代理将RPC的服务名，方法名和参数等信息转成标准的RPC Request 对象交给RPC框架
+3. RPC 框架采用RPC协议（RPC Protocol）将RPC Request对象序列化成二进制形式，然后通过TCP通道传递给服务方
+4. 服务端（Server）收到二进制数据后，将它反序列化成RPC Request对象
+5. 服务端根据RPC Request 中的信息找到本地对应的方法，执行，得到结果
+6. RPC将结果封装成RPC Response对象，序列化成二进制形式然后通过TCP通道传递给服务调用方（Client）
+7. 调用方收到二进制数据后，将它反序列化成RPC Response对象，并且将结果通过本地代理返回给业务代码
+
+序列化协议：Hessian，Protobuf，JSON
+通讯层协议：HSF、Dubbo、gRPC
+
 
 ### PRC 调用
 1. Call ID 映射
@@ -51,3 +55,6 @@ Call ID映射可以直接使用函数字符串，也可以使用整数ID。映�
 4. 通过在call_id_map中查找，得到相应的函数指针
 5. 将lvalue和rvalue反序列化后，在本地调用Multiply函数，得到结果
 6. 将结果序列化后通过网络返回给Client
+
+### 参考文章
+[link](https://zhuanlan.zhihu.com/p/38012481)
