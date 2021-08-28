@@ -8,21 +8,46 @@
 </head>
 <body>
     <script>
-        Array.prototype._map = function(callbackFn, thisArg) {
-            let _this = Object(this)
-            let _bindThis = thisArg
-            let length = _this.length
-            let result = []
-            for (let i = 0; i < length; i++) {
-                let mapRes = callbackFn.call(_bindThis, _this[i])
-                result[i] = mapRes
+        // Array.prototype._map = function(callbackFn, thisArg) {
+        //     let _this = Object(this)
+        //     let _bindThis = thisArg
+        //     let length = _this.length
+        //     let result = []
+        //     for (let i = 0; i < length; i++) {
+        //         let mapRes = callbackFn.call(_bindThis, _this[i])
+        //         result[i] = mapRes
+        //     }
+        //     return result
+        // }
+        // var arr = [2,3,1,5]
+        // arr._map(function(item, index, arr){
+        //     console.log(item, index, arr)
+        // })
+        /**
+ * @param {string[]} emails
+ * @return {number}
+ */
+var numUniqueEmails = function(emails) {
+    let processedEmails = emails.map(email => {
+        let res = ''
+        let flag = false
+        for (let i = 0; i < email.length; i++) {
+            let c = email[i]
+            if (c == '.') {
+                flag = true
+            } else if (c == '@') {
+                flag = false
+                res += c
+            } else if (!flag) {
+                res += c   
             }
-            return result
         }
-        var arr = [2,3,1,5]
-        arr._map(function(item, index, arr){
-            console.log(item, index, arr)
-        })
+        return res
+    })
+    console.log('processedEmails:', processedEmails)
+    return processedEmails
+}
+console.log(numUniqueEmails(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]))
     </script>
 </body>
 </html>

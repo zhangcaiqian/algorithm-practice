@@ -1,35 +1,31 @@
-1. 为什么要用Node？
-2. Node架构是什么样子的？
+### 为什么要用Node？
+    + 工程上来讲前端人员入手门槛低
+    + 异步驱动，高并发，非阻塞，能承接请求，可作为密集I/O
+
+### Node架构是什么样子的？
 ![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/Node.png)   
 主要分为三层
 + 应用App
 + V8及Node内置架构
     + V8是Node运行环境
     + 内置架构又可以分为三层
-        + 核心模块
+        + JS 实现
         + C++绑定
         + libuv + CAes + http
-+ 操作系统
++ 原生模块
 
-3. Node 有哪些模块？
-EventEmitter、Stream、FS、Net和全局对象
+### 管道
+```
+管道的概念应运而生。目前在任何一个shell中，都可以使用“|”连接两个命令，shell会将前后两个进程的输入输出用一个管道相连，以便达到进程间通信的目的：
 
+> [zorro@zorro-pc pipe]$ ls -l /etc/ | wc -l
 
-4. Node 有哪些全局对象
-+ process
-    + process.stdin
-    + process.stdout
-    + process.on
-    + process.argv
-+ console
-    + console.log/console.info
-+ Buffer
-    + 处理二进制数据，比如图片，mp3，数据库文件，支持各种编解码，二进制字符串互换
-
-5. Node 事件循环
+对比以上两种方法，我们也可以理解为，管道本质上就是一个文件，前面的进程以写方式打开文件，后面的进程以读方式打开。这样前面写完后面读，于是就实现了通信。实际上管道的设计也是遵循UNIX的“一切皆文件”设计原则的，它本质上就是一个文件。Linux系统直接把管道实现成了一种文件系统，借助VFS给应用程序提供操作接口。
 
 
-6. Stream
+```
+
+### Stream
     + 什么是Stream
         + 基于事件EventEmitter的数据管理模式，由不同的抽象接口组成，包括可读、可写、可转换
     + Stream 有什么好处
@@ -49,6 +45,27 @@ EventEmitter、Stream、FS、Net和全局对象
         + 构造函数 call Writable
         + 继承writable
         + 实现write
+
+
+### Node 有哪些模块？
+EventEmitter、Stream、FS、Net和全局对象
+
+
+4. Node 有哪些全局对象
++ process
+    + process.stdin
+    + process.stdout
+    + process.on
+    + process.argv
++ console
+    + console.log/console.info
++ Buffer
+    + 处理二进制数据，比如图片，mp3，数据库文件，支持各种编解码，二进制字符串互换
+
+5. Node 事件循环
+
+
+
 
 7. 文件系统
     + 内置fs模块架构师什么样子
@@ -251,4 +268,9 @@ child.stdout.pipe(process.stdout); // child.stdout是输入流，process.stdout�
 	    console.log(reply.toString());
 	});
 	client.end();
+    ```
+
+    ### 文档
+    ```
+    https://www.jmjc.tech/less/111
     ```
