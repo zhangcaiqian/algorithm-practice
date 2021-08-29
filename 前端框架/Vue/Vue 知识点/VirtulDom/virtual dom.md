@@ -14,7 +14,7 @@
     ![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/VD按类型.jpeg)
 
 ### snabddom 中的VD
-在h函数中，不光可以为VirtualDOM保存数据属性，还可以设置事件回调函数，并在其中获取并处理相关的事件属性，如update回调中的event对象。通过捕获事件中创建新的vnode，
+在h函数中，不光可以为VirtualDOM保存数据属性，还可以设置事件回调函数，并在其中获取并处理相关的事件属性，如update回调中的event对象。通过捕获事件中创建新的vnode，与旧的vnode进行diff，最终对当前的oldVnode进行更新，并向用户展示更新结果
 
 + 将页面的对象抽象成JS的形式，配合不同渲染工具，使得跨平台成为可能。
 + 可以在内存中进行比较，将多次对比结果一次性更新，减少渲染次数。
