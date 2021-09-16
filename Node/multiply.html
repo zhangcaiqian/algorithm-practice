@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var multiply = function(num1, num2) {
+    if (num1 == '0' || num2 == '0') return '0'
+    let temp = []
+    for (let i = num2.length - 1; i >= 0; i--) {
+        let curTemp = [], carry = 0
+        for (let j = num1.length - 1; j >= 0; j--) {
+            let n2 = Number(num2[i])
+            let n1 = Number(num1[j])
+            if (n2== 0) continue
+            let sum = n1 * n2 + carry
+            curTemp.unshift(Math.floor(sum % 10))
+            carry = Math.floor(sum / 10)
+        }
+        curTemp.unshift(carry)
+        if (curTemp.length)
+            temp.push(curTemp)
+    }
+    let flag = true
+    let res = [], index = 0, carry = 0
+    console.log(temp)
+    while (flag) {
+        let sum = 0
+        flag = false
+        for (let i = 0; i < temp.length; i++) {
+            let len = temp[i].length - 1
+            let id = len - index + i
+            if (id >= 0 && id <= len)  {
+                sum += temp[i][id]
+                flag = true
+            }
+        }
+        sum += carry
+        console.log(sum)
+        carry = Math.floor(sum / 10)
+        sum = Math.floor(sum % 10)
+        res.unshift(sum)
+       
+        index ++
+    }
+
+    if (carry) res.unshift(carry)
+    while (res[0] == 0) {
+        res.shift()
+    }
+    return res
+}
+
+        // console.log(multiply('123', '456'))
+        console.log(multiply('501', '6'))
+    </script>
+</body>
+</html>

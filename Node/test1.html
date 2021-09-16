@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var getLeastNumbers = function(arr, k) {
+    if (k >= arr.length) return arr
+    let l = 0, r = arr.length - 1
+    let index = quickSort(arr, 0, arr.length - 1)
+    while(index != k - 1) {
+        if (index > k - 1) {
+            r = index - 1
+            index = quickSort(arr, l, r)
+        } else {
+            l = index + 1
+            index = quickSort(arr, l, r)
+        }
+    }
+    return arr.slice(0, k)
+};
+var quickSort = function (arr, l, r, k) {
+    let less = l - 1, more = r;
+    swap(arr, l + ((Math.random() * (r - l + 1)) | 0), r);
+    while (l < more) {
+        if (arr[l] < arr[r])
+            swap(arr, ++less, l++);
+        else if (arr[l] > arr[r])
+            swap(arr, --more, l);
+        else
+            l++;
+    }
+    swap(arr, more, r);
+    return more;
+}
+var swap = function (arr, i, j) {
+    let t = arr[i]
+    arr[i] = arr[j]
+    arr[j] = t
+}
+    </script>
+</body>
+</html>

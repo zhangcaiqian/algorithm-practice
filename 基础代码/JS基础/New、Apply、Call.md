@@ -70,7 +70,7 @@ function _new(ctor, ...args) {
     {
         throw 'ctor must be a function';
     }
-    let obj = new Object();
+    let obj = new Object(); 
     // 实例绑定原型
     obj._proto = Object.create(ctor.prototype);
     // 执行构造函数

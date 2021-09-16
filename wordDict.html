@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+var wordBreak = function(s, wordDict) {
+    const len = s.length
+    const wordSet = new Set(wordDict)
+    const memo = new Array(len)
+ 
+    const canBreak = (start) => {
+        if (start == len) return true
+        if (memo[start] !== undefined) return memo[start]
+
+        for (let i = start + 1; i <= len; i++) {
+            const prefix = s.slice(start, i)
+            if (wordSet.has(prefix) && canBreak(i)) {
+                memo[start] = true
+                return true
+            }
+        }
+        memo[start] = false
+        return false
+    }
+
+    return canBreak(0)
+};
+
+console.log(wordBreak('leetcode', ["leet", "code"]))
+    </script>
+</body>
+</html>
