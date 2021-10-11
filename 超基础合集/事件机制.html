@@ -19,6 +19,11 @@
         <li style="background-color: blue;">blue</li>        
         <li style="background-color: purple;">purple</li>    
     </ul>
+    <div class="clearfix">
+      <div class="bfc-box clearfix">Haha</div>
+      <div class="bfc-box clearfix">Hehe</div>
+    </div>
+    
     <div id="box"></div>
       <script>
           // s1.addEventListener("click",function(e){
@@ -60,6 +65,24 @@
           background-color: #cccccc;            
           line-height: 150px;            
           text-align: center;        
+      }
+      .clearfix:after, .clearfix:before {
+            content: "";
+            display: table;
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        .bfc-box {
+          color: #f55;
+          background: #fcc;
+          width: 200px;
+          line-height: 100px;
+          text-align:center;
+          margin: 100px;
       }
 
     </style>
