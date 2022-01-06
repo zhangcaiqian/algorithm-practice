@@ -14,4 +14,4 @@
 1. 领域知识被割裂
 2. 代码的业务代码语义表达能力弱
 
-![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/DDD改造完1.png)
+![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/DDD改造完1.jpeg)
