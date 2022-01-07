@@ -24,7 +24,7 @@
 
 借助领域建模后
 
-![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/借助领域建模后.jpeg)≥
+![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/借助领域建模后.jpeg)
 
 
 ### 领域建模
@@ -105,3 +105,9 @@ IMG_42BA510FE104-1.jpeg
 
 2. 反腐
 ![image](https://github.com/zhangcaiqian/algorithm-practice/blob/master/Assets/防腐.jpeg)
+
+3. 领域模型
+> 用来反映事物某部分特征的物件
+> 内核不应该太复杂
+如何建模？
+用例分析、四色建模、事件风暴
